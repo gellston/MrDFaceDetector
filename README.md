@@ -7,6 +7,10 @@ Development Environment
  - **Windows 10 SDK 10.0.18362.0**
  - **Toolset v143**
 
+# Results
+<img src="https://github.com/gellston/MrDFaceDetector/blob/main/Results/1.jpg?raw=true" width=1024/>
+<img src="https://github.com/gellston/MrDFaceDetector/blob/main/Results/2.jpg?raw=true" width=1024/>
+
 # Example
 ```cpp
 
