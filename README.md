@@ -12,7 +12,13 @@ Development Environment
 <img src="https://github.com/gellston/MrDFaceDetector/blob/main/Results/2.jpg?raw=true" width=1024/>
 
 # Download API
-<a href="https://github.com/gellston/MrDFaceDetector/releases/download/1.0/MrDFaceDetector.zip" target="_blank">https://github.com/gellston/MrDFaceDetector/releases/download/1.0/MrDFaceDetector.zip</a>
+<a href="https://github.com/gellston/MrDFaceDetector/releases/download/1.0/MrDFaceDetector.zip" target="_blank">https://github.com/gellston/MrDFaceDetector/releases/download/1.0/MrDFaceDetector.zip</a> <br/>
+
+※ 동작을 위해서는 LibTorch DLL이 필요합니다.
+<br/>
+<a href="https://pytorch.org/get-started/locally/#windows-installation" target="_blank">https://pytorch.org/get-started/locally/#windows-installation</a>
+
+
 
 # Example
 ```cpp
