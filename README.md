@@ -11,8 +11,8 @@ Development Environment
 <img src="https://github.com/gellston/MrDFaceDetector/blob/main/Results/1.jpg?raw=true" width=1024/>
 <img src="https://github.com/gellston/MrDFaceDetector/blob/main/Results/2.jpg?raw=true" width=1024/>
 
-# Download
-https://github.com/gellston/MrDFaceDetector/releases/download/1.0/MrDFaceDetector.zip
+# Download API
+<a href="https://github.com/gellston/MrDFaceDetector/releases/download/1.0/MrDFaceDetector.zip" target="_blank">https://github.com/gellston/MrDFaceDetector/releases/download/1.0/MrDFaceDetector.zip</a>
 
 # Example
 ```cpp
