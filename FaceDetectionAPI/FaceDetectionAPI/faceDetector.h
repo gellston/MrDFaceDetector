@@ -20,7 +20,7 @@ namespace mrd {
 		std::shared_ptr<mrd::impl_faceDetector> _instance;
 	public:
 
-		faceDetector(std::string path, double iou_threshold, double score_threshold);
+		faceDetector(std::string path, double inference_width, double inference_height, double downscale, double iou_threshold, double score_threshold);
 		~faceDetector();
 
 

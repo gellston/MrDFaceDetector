@@ -60,11 +60,15 @@ double boxiou(std::shared_ptr<mrd::box> box1, std::shared_ptr<mrd::box> box2) {
 
 
 
-mrd::faceDetector::faceDetector(std::string path, double iou_threshold, double score_threshold) : _instance(new mrd::impl_faceDetector()) {
+mrd::faceDetector::faceDetector(std::string path, double inference_width, double inference_height, double downscale, double iou_threshold, double score_threshold) : _instance(new mrd::impl_faceDetector()) {
 
 	this->_instance->path = path;
 	this->_instance->iou_threshold = iou_threshold;
 	this->_instance->score_threshold = score_threshold;
+    this->_instance->inference_width = inference_width;
+    this->_instance->inference_height = inference_height;
+    this->_instance->feature_width = inference_width / downscale;
+    this->_instance->feature_height = inference_height / downscale;
 
 
 
@@ -81,13 +85,14 @@ mrd::faceDetector::faceDetector(std::string path, double iou_threshold, double s
     }
 
 
-
 	try {
+        
 		this->_instance->model = torch::jit::load(path, this->_instance->torch_device_type);
 		this->_instance->model.eval();
 
 	}
 	catch (std::exception e) {
+        std::cout << e.what() << std::endl;
 		throw std::exception("Invalid model info");
 	}
 }
@@ -127,10 +132,10 @@ std::vector<std::shared_ptr<mrd::box>> mrd::faceDetector::prediction(unsigned ch
         auto outputs = this->_instance->model.forward(tensor_vec).toTuple();
         auto elements = outputs->elements();
 
-        torch::Tensor prediction_heatmap = elements[0].toTensor();
-        torch::Tensor prediction_featuremap = elements[1].toTensor();
-        torch::Tensor prediction_sizemap = elements[2].toTensor();
-        torch::Tensor prediction_offsetmap = elements[3].toTensor();
+        torch::Tensor prediction_heatmap = elements[0].toTensor().cpu().detach();
+        torch::Tensor prediction_featuremap = elements[1].toTensor().cpu().detach();
+        torch::Tensor prediction_sizemap = elements[2].toTensor().cpu().detach();
+        torch::Tensor prediction_offsetmap = elements[3].toTensor().cpu().detach();
 
 
 
@@ -158,6 +163,9 @@ std::vector<std::shared_ptr<mrd::box>> mrd::faceDetector::prediction(unsigned ch
                 }
             }
         }
+
+        if (total_box.size() == 0)
+            return final_box;
 
         std::sort(total_box.begin(), total_box.end(), [&](std::shared_ptr<mrd::box>& box1, std::shared_ptr<mrd::box>& box2) {
             return box1->score() > box2->score();

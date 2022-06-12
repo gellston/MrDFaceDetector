@@ -145,6 +145,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Github\Library\torch\release\libtorch\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>caffe2_nvrtc.lib;c10.lib;c10_cuda.lib;torch_cuda.lib;torch_cpu.lib;torch_cuda_cu.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/INCLUDE:?_torch_cuda_cu_linker_symbol_op_cuda@native@at@@YA?AVTensor@2@AEBV32@@Z %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

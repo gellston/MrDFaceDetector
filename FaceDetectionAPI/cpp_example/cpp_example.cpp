@@ -10,7 +10,7 @@
 int main()
 {
     
-    mrd::faceDetector detector("C://Github//DeepLearningStudy//trained_model//TRAIN_WIDERFACE(MobileNetV2CenterNet).pt", 0.5, 0.5);
+    mrd::faceDetector detector("C://Github//MrDFaceDetector//Model//MobilenetV3Centernet.pt", 800, 800, 4, 0.4, 0.5);
     std::string path = "C://Github//MrDFaceDetector//Samples";
     for (const auto& entry : std::filesystem::directory_iterator(path)) {
 
@@ -19,10 +19,10 @@ int main()
         for (auto box : boxes) {
             cv::rectangle(originalImage, cv::Rect(box->x(), box->y(), box->width(), box->height()), cv::Scalar(0, 255, 0), 1);
         }
-        cv::namedWindow("result", cv::WINDOW_AUTOSIZE);
+        cv::namedWindow("result", cv::WINDOW_FREERATIO);
         cv::resizeWindow("result", cv::Size(1280, 1024));
         cv::imshow("result", originalImage);
-        cv::waitKey(1000);
+        cv::waitKey(1);
     }
 }
 
